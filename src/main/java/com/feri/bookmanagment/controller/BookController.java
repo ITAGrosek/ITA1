@@ -60,7 +60,9 @@ public class BookController {
                     book.setIsbn(bookDetails.getIsbn());
                     book.setGenre(bookDetails.getGenre());
                     Book updatedBook = bookService.saveBook(book);
-                    log.info("Knjiga posodobljena: ID={}, Naslov={}, Avtor={}", updatedBook.getId(), updatedBook.getTitle(), updatedBook.getAuthor());
+                    log.info("Knjiga posodobljena: ID={}, Naslov={}, Avtor={}, ISBN={}, Žanr={}",
+                            updatedBook.getId(), updatedBook.getTitle(), updatedBook.getAuthor(),
+                            updatedBook.getIsbn(), updatedBook.getGenre());
                     return ResponseEntity.ok(updatedBook);
                 })
                 .orElseGet(() -> {
