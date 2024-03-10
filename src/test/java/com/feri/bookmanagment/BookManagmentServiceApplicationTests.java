@@ -33,6 +33,8 @@ public class BookManagmentServiceApplicationTests {
 	}
 
 	@Test
+	// Preverja, ali metoda za pridobivanje vseh knjig vrača pravilen seznam knjig.
+
 	public void testGetAllBooks() {
 		// Priprava testnih podatkov
 		Book book1 = new Book("1", "Title1", "Author1", "ISBN1", "Genre1");
@@ -49,6 +51,8 @@ public class BookManagmentServiceApplicationTests {
 		assertEquals(expectedBooks, actualBooks);
 	}
 	@Test
+	// Preverja, ali metoda za pridobivanje knjige po ID-ju vrača knjigo, če ta obstaja.
+
 	public void testGetBookByIdWhenBookExists() {
 		// Priprava testnih podatkov
 		String id = "1";
@@ -65,6 +69,8 @@ public class BookManagmentServiceApplicationTests {
 		assertEquals(expectedBook, response.getBody());
 	}
 	@Test
+	// Preverja, ali metoda za pridobivanje knjige po ID-ju vrača status 404, če knjiga ne obstaja.
+
 	public void testGetBookByIdWhenBookDoesNotExist() {
 		// Priprava testnih podatkov
 		String id = "1";
@@ -80,6 +86,8 @@ public class BookManagmentServiceApplicationTests {
 	}
 
 	@Test
+	// Preverja, ali metoda za ustvarjanje nove knjige pravilno shrani knjigo in vrne ustrezne podatke.
+
 	public void testCreateBook() {
 		// Priprava testnih podatkov
 		Book book = new Book("1", "Title", "Author", "ISBN", "Genre");
@@ -96,6 +104,8 @@ public class BookManagmentServiceApplicationTests {
 		verify(bookService).saveBook(book); // Preveri, ali je bila metoda saveBook() klicana z določenimi argumenti
 	}
 	@Test
+	// Preverja, ali metoda za posodabljanje knjige pravilno posodobi podatke o obstoječi knjigi.
+
 	public void testUpdateBook() {
 		// Priprava testnih podatkov
 		String id = "1";
@@ -115,6 +125,7 @@ public class BookManagmentServiceApplicationTests {
 		verify(bookService).getBookById(id); // Preveri, ali je bila metoda getBookById() klicana z določenimi argumenti
 		verify(bookService).saveBook(existingBook); // Preveri, ali je bila metoda saveBook() klicana z določenimi argumenti
 	}
+	// Preverja, ali metoda za brisanje knjige pravilno izbriše knjigo, če ta obstaja, in vrne ustrezno sporočilo.
 
 	@Test
 	public void testDeleteBook_BookExists() {
@@ -135,6 +146,7 @@ public class BookManagmentServiceApplicationTests {
 		// Preverjanje, ali je bila metoda deleteBook iz klica servisa korektno klicana
 		verify(bookService, times(1)).deleteBook(bookId);
 	}
+	// Preverja, ali metoda za brisanje knjige vrne napako, če knjiga, ki jo želimo izbrisati, ne obstaja.
 
 	@Test
 	public void testDeleteBook_BookNotExists() {
@@ -154,6 +166,7 @@ public class BookManagmentServiceApplicationTests {
 		// Preverjanje, ali metoda deleteBook ni klicala metode deleteBook servisa
 		verify(bookService, never()).deleteBook(bookId);
 	}
+	// Preverja, ali metoda za iskanje knjig po naslovu pravilno vrne seznam knjig, ki vsebujejo dani niz v naslovu.
 
 	@Test
 	public void testGetBooksByTitle_TitleExists() {
@@ -173,6 +186,7 @@ public class BookManagmentServiceApplicationTests {
 		assertEquals(expectedBooks.size(), response.size());
 		assertEquals(expectedBooks, response);
 	}
+	// Preverja, ali metoda za iskanje knjig po avtorju pravilno vrne seznam knjig, ki jih je napisal določen avtor.
 
 	@Test
 	public void testGetBooksByAuthor_AuthorExists() {
@@ -192,6 +206,8 @@ public class BookManagmentServiceApplicationTests {
 		assertEquals(expectedBooks.size(), response.size());
 		assertEquals(expectedBooks, response);
 	}
+	// Preverja, ali metoda za iskanje knjig po žanru pravilno vrne seznam knjig, ki spadajo v določen žanr.
+
 	@Test
 	public void testGetBooksByGenre_GenreExists() {
 		// Priprava testnih podatkov
