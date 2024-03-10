@@ -7,17 +7,17 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '17'
-
 
       - name: Cache Maven packages
         uses: actions/cache@v2
@@ -26,6 +26,11 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+
+      - name: Set environment variables
+        run: |
+          echo "spring.data.mongodb.uri=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
+          echo "spring.data.mongodb.database=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
 
       - name: Run tests
         run: mvn -B test
