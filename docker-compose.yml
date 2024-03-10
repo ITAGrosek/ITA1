@@ -1,9 +1,10 @@
 version: '3.8'
 
 services:
-  app:
+  book-managment-service:
     build: .
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATA_MONGODB_URI: ${MONGO_URI}
+      MONGO_URI: ${MONGO_URI}
+      DB_NAME: ${DB_NAME}

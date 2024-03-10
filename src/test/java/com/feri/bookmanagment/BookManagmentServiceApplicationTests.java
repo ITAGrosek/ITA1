@@ -2,6 +2,7 @@ package com.feri.bookmanagment;
 
 import com.feri.bookmanagment.controller.BookController;
 import com.feri.bookmanagment.model.Book;
+import com.feri.bookmanagment.repository.BookRepository;
 import com.feri.bookmanagment.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

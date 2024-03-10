@@ -1,11 +1,18 @@
-# Use the official Java 17 image from Docker Hub as the base image
+# Start with a base image containing Java runtime (e.g., OpenJDK 17)
 FROM openjdk:17
 
-# Set the working directory inside the container to /app
-WORKDIR /app
 
-# Copy the built jar file into the container
-COPY target/*.jar app.jar
+# Add a volume pointing to /tmp
+VOLUME /tmp
 
-# Command to run the Spring Boot application
-CMD ["java", "-jar", "app.jar"]
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# The application's jar file
+ARG JAR_FILE=target/book-managment-0.0.1-SNAPSHOT.jar
+
+# Add the application's jar to the container
+ADD ${JAR_FILE} book-managment-service.jar
+
+# Run the jar file
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/book-managment-service.jar"]
