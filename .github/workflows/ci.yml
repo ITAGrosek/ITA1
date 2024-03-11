@@ -33,4 +33,4 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Run tests
-        run: mvn -B test -Dspring.data.mongodb.uri=mongodb://martin:12345@mongo:27017/novaKnjigarna?authSource=novaKnjigarna
+        run: mvn -B test -Dspring.data.mongodb.uri=mongodb://${{ secrets.MONGO_USERNAME }}:${{ secrets.MONGO_PASSWORD }}@mongo:27017/${{ secrets.MONGO_DB }}?authSource=${{ secrets.MONGO_DB }}
