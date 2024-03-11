@@ -33,7 +33,7 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Run tests
-        run: mvn -B test -Dspring.data.mongodb.uri=mongodb://mongoadmin:secret@localhost:27017/bookdb?authSource=admin
+        run: mvn -B test -Dspring.data.mongodb.uri=mongodb://mongoadmin:secret@mongo:27017/bookdb?authSource=admin
         env:
           MONGO_INITDB_ROOT_USERNAME: mongoadmin
           MONGO_INITDB_ROOT_PASSWORD: secret
