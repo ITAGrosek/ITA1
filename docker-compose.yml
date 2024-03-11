@@ -1,10 +1,23 @@
 version: '3.8'
 
 services:
-  book-managment-service:
+  book-management-service:
     build: .
     ports:
       - "8080:8080"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.4.6
     environment:
-      MONGO_URI: ${MONGO_URI}
-      DB_NAME: ${DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: bookdb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:
