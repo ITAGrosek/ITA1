@@ -11,4 +11,4 @@ Sistem je zasnovan kot mikrostoritev, ki bi lahko bila del večjega sistema mikr
 - Integracija z MongoDB za trajno hrambo podatkov.
 - Izpisovanje dnevnikov operacij in napak za lažje odpravljanje napak in spremljanje.
 - Unit testi za plasti repozitorija in kontrolerja za zagotavljanje kakovosti kode.
-- Podpora za kontejnerizacijo z Dockerjem. 
+- Podpora za kontejnerizacijo z Dockerjem
