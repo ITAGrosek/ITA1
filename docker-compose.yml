@@ -8,20 +8,15 @@ services:
     env_file:
       - .env
     environment:
-      MONGO_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_DB: ${MONGO_INITDB_DATABASE}
+      SPRING_DATA_MONGODB_URI: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?authSource=${MONGO_DB}
     depends_on:
       - mongo
 
   mongo:
     image: mongo:4.4.6
-    env_file:
-      - .env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
     ports:
       - "27017:27017"
     volumes:

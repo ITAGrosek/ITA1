@@ -17,7 +17,6 @@ public class MongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate() {
-        // Uporabite SimpleMongoClientDatabaseFactory za ustvarjanje MongoDatabaseFactory
         MongoDatabaseFactory factory = new SimpleMongoClientDatabaseFactory(mongoUri);
         return new MongoTemplate(factory);
     }
