@@ -27,12 +27,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Set up environment variables
-        env:
-          SPRING_DATA_MONGODB_URI: ${{ secrets.MONGO_URI }}
-          SPRING_DATA_MONGODB_DATABASE: ${{ secrets.DB_NAME }}
-        run: echo "Environment variables set"
-
+      - name: Set environment variables
+        run: |
+          echo "spring.data.mongodb.uri=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
+          echo "spring.data.mongodb.database=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
 
       - name: Run tests
         run: mvn -B test
