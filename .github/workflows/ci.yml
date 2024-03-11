@@ -13,6 +13,11 @@ jobs:
         image: mongo:4.4.6
         ports:
           - 27017:27017
+        options: >-
+          --health-cmd "mongo --eval 'db.runCommand({ping: 1})'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout repository
@@ -28,6 +33,8 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Run tests
-        run: mvn -B test
+        run: mvn -B test -Dspring.data.mongodb.uri=mongodb://mongoadmin:secret@localhost:27017/bookdb?authSource=admin
         env:
-          SPRING_DATA_MONGODB_URI: mongodb://mongoadmin:secret@localhost:27017/bookdb
+          MONGO_INITDB_ROOT_USERNAME: mongoadmin
+          MONGO_INITDB_ROOT_PASSWORD: secret
+          MONGO_INITDB_DATABASE: bookdb
