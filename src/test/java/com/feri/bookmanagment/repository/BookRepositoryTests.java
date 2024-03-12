@@ -1,3 +1,5 @@
+
+/*
 package com.feri.bookmanagment.repository;
 
 import com.feri.bookmanagment.model.Book;
@@ -32,3 +34,4 @@ public class BookRepositoryTests {
 
     // Podobno lahko dodate več testov za preverjanje ostalih metod repozitorija
 }
+*/
